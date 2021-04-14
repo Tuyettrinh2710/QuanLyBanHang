@@ -1,0 +1,14 @@
+com\mycompany\pojo\KhachHang.class
+com\mycompany\qlbanhang\SecondaryController.class
+com\mycompany\pojo\LoaiSP.class
+com\mycompany\service\LoaiSPService.class
+com\mycompany\service\SanPhamService.class
+module-info.class
+com\mycompany\service\JdbcUtils.class
+com\mycompany\pojo\ChiTietHD.class
+com\mycompany\pojo\HoaDon.class
+com\mycompany\qlbanhang\PrimaryController.class
+com\mycompany\pojo\NhanVien.class
+com\mycompany\pojo\SanPham.class
+com\mycompany\qlbanhang\App.class
+com\mycompany\service\NhanVienService.class

@@ -1,0 +1,21 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 13, 2021, 9:46:52 PM
+    Author     : CasMap
+*/
+
+GridPane {
+    -fx-padding: 10 20;
+}
+
+Label#title {
+    -fx-font-size: 32px;
+}
+
+Label, Button {
+    -fx-font-size: 16px;
+}
