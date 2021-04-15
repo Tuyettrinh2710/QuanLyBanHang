@@ -67,4 +67,14 @@ public class SanPhamTester {
             Logger.getLogger(SanPhamTester.class.getName()).log(Level.SEVERE, null, ex);
         }
    }
+   
+   @Test
+   public void xoaSanPham() {
+        try {
+            SanPhamService sv = new SanPhamService(CONN);
+            Assertions.assertTrue(sv.xoaSanPham(5));
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
 }

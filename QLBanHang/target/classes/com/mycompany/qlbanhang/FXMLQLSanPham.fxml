@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="718.0" stylesheets="@styleSP.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="com.mycompany.qlbanhang.FXMLQLSanPhamController">
+<GridPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@styleSP.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qlbanhang.FXMLQLSanPhamController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.9999877929687" minWidth="10.0" prefWidth="186.4" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.39999999999998" minWidth="10.0" prefWidth="234.39999999999998" />
@@ -28,8 +28,8 @@
       <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="130.39999999999998" minHeight="10.0" prefHeight="52.999975585937506" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="130.39999999999998" minHeight="10.0" prefHeight="52.60002441406249" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="130.39999999999998" minHeight="10.0" prefHeight="119.79997558593749" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="130.39999999999998" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="130.39999999999998" minHeight="10.0" prefHeight="115.99999999999994" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label id="title" prefHeight="54.0" prefWidth="267.0" stylesheets="@styleSP.css" text="Quản Lý Sản Phẩm" GridPane.columnIndex="1" GridPane.columnSpan="3">
@@ -55,8 +55,8 @@
             <Button fx:id="btCapNhat" layoutX="111.0" layoutY="10.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Cập nhật" />
          </children>
       </Pane>
-      <ImageView fx:id="imgV" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="3" />
+      <ImageView fx:id="imgV" fitHeight="133.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="3" />
       <Button fx:id="btUpload" mnemonicParsing="false" onAction="#loadhandle" prefHeight="26.0" prefWidth="90.0" text="Tải ảnh" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-      <TableView fx:id="tbSanPham" prefHeight="122.0" prefWidth="591.0" GridPane.columnSpan="4" GridPane.rowIndex="9" />
+      <TableView fx:id="tbSanPham" prefHeight="133.0" prefWidth="678.0" GridPane.columnSpan="4" GridPane.rowIndex="9" />
    </children>
 </GridPane>

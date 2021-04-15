@@ -22,8 +22,11 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -125,7 +128,42 @@ public class FXMLQLSanPhamController implements Initializable {
         TableColumn colLoai = new TableColumn("Loại sp");
         colLoai.setCellValueFactory(new PropertyValueFactory("loaiSP_id"));
         
+        TableColumn colAction = new TableColumn();
+        colAction.setCellFactory((obj) -> {
+            Button btn = new Button("Xóa");
+            
+            btn.setOnAction(evt -> {
+                Utils.getBox("Bạn chắc chắn xóa không?", Alert.AlertType.CONFIRMATION)
+                        .showAndWait().ifPresent(bt -> {
+                                if (bt == ButtonType.OK) {
+                                    try {
+                                        TableCell cell = (TableCell) ((Button) evt.getSource()).getParent();
+                                        SanPham s = (SanPham) cell.getTableRow().getItem();
+                                        
+                                        Connection conn = JdbcUtils.getConn();
+                                        SanPhamService sv = new SanPhamService(conn);
+                                        
+                                        if (sv.xoaSanPham(s.getIdSP())) {
+                                            Utils.getBox("SUCCESSFUL", Alert.AlertType.INFORMATION).show();
+                                            
+                                        } else
+                                            Utils.getBox("FAILED", Alert.AlertType.ERROR).show();
+                                        
+                                        conn.close();
+                                    } catch (SQLException ex) {
+                                        ex.printStackTrace();
+                                        Logger.getLogger(FXMLQLSanPhamController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                            }
+                        });
+            });
+            
+            TableCell cell = new TableCell();
+            cell.setGraphic(btn);
+            return cell;
+        });
+        
         this.tbSanPham.getColumns().addAll(colId, colName, colSoLuong, 
-                        colGiaNhap, colGiaBan, colAnh, colLoai);
+                        colGiaNhap, colGiaBan, colAnh, colLoai, colAction);
     }
 }

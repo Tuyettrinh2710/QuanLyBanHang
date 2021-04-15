@@ -54,8 +54,6 @@ public class SanPhamService {
     }
     
     public boolean themSanPham(SanPham s) throws SQLException{
-        int row = 0;
-      
         String sql = "INSERT INTO sanpham(tenSP, soLuong, donGiaNhap, donGiaBan, anh, loaiSP_id) "
                 + "VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement stm = this.conn.prepareStatement(sql);
@@ -65,8 +63,17 @@ public class SanPhamService {
         stm.setBigDecimal(4, s.getDonGiaBan());
         stm.setBytes(5, s.getAnh());
         stm.setInt(6, s.getLoaiSP_id());
-        row = stm.executeUpdate();
-      
+        int row = stm.executeUpdate();
+        
+        return row > 0;
+    }
+    
+    public boolean xoaSanPham(int sp) throws SQLException {
+        String sql = "DELETE FROM banhangdb.sanpham WHERE idSP=?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setInt(1, sp);
+        
+        int row = stm.executeUpdate();
         
         return row > 0;
     }
