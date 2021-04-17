@@ -11,8 +11,11 @@ import com.mycompany.service.JdbcUtils;
 import com.mycompany.service.LoaiSPService;
 import com.mycompany.service.SanPhamService;
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URL;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -72,11 +75,16 @@ public class FXMLQLSanPhamController implements Initializable {
             Logger.getLogger(FXMLQLSanPhamController.class.getName()).log(Level.SEVERE, null, ex);
         }
         loadTable();
-        try {
-            loadSanPham();
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(FXMLQLSanPhamController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        loadSanPham("");
+    }
+    
+    public void loadForm() {
+        txtTen.setText("");
+        txtSoLuong.setText("");
+        txtGiaNhap.setText("");
+        txtGiaBan.setText("");
+        txtAnh.setText("");
+        imgV.setImage(null);
     }
     
     public void loadhandle(ActionEvent event) {
@@ -92,12 +100,12 @@ public class FXMLQLSanPhamController implements Initializable {
         }    
     }
     
-    public void loadSanPham() throws UnsupportedEncodingException {
+    public void loadSanPham(String kw){
         this.tbSanPham.getItems().clear();
         try {
             Connection conn = JdbcUtils.getConn();
             SanPhamService s = new SanPhamService(conn);
-            this.tbSanPham.setItems(FXCollections.observableList(s.getSanPham()));
+            this.tbSanPham.setItems(FXCollections.observableList(s.getSanPhams(kw)));
             conn.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -145,7 +153,7 @@ public class FXMLQLSanPhamController implements Initializable {
                                         
                                         if (sv.xoaSanPham(s.getIdSP())) {
                                             Utils.getBox("SUCCESSFUL", Alert.AlertType.INFORMATION).show();
-                                            
+                                            loadSanPham("");
                                         } else
                                             Utils.getBox("FAILED", Alert.AlertType.ERROR).show();
                                         
@@ -165,5 +173,31 @@ public class FXMLQLSanPhamController implements Initializable {
         
         this.tbSanPham.getColumns().addAll(colId, colName, colSoLuong, 
                         colGiaNhap, colGiaBan, colAnh, colLoai, colAction);
+    }
+    
+    public void addHandle(ActionEvent e) throws IOException {
+        Connection conn;
+        try {
+            conn = JdbcUtils.getConn();
+            SanPhamService sv = new SanPhamService(conn);
+            SanPham s = new SanPham();
+            
+            s.setTenSP(txtTen.getText());
+            s.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+            s.setDonGiaNhap(new BigDecimal(txtGiaNhap.getText()));
+            s.setDonGiaBan(new BigDecimal(1800000));
+            s.setAnh(Files.readAllBytes(new File(txtAnh.getText()).toPath()));
+            s.setLoaiSP_id(this.cbLoaiSP.getSelectionModel().getSelectedItem().getIdLoaiSP());
+            
+            if (sv.themSanPham(s) == true){
+                Utils.getBox("SUCCESSFUL", Alert.AlertType.INFORMATION).show();
+                loadSanPham("");
+            } else
+                Utils.getBox("FAILED", Alert.AlertType.ERROR).show();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLQLSanPhamController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        loadForm();
     }
 }
