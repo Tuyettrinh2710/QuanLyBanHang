@@ -12,7 +12,6 @@ import com.mycompany.service.LoaiSPService;
 import com.mycompany.service.SanPhamService;
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.nio.file.Files;
@@ -31,6 +30,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -47,6 +47,7 @@ import javafx.stage.Stage;
  */
 public class FXMLQLSanPhamController implements Initializable {
     @FXML private GridPane ap;
+    @FXML private TextField txtId;
     @FXML private TextField txtTen;
     @FXML private TextField txtSoLuong;
     @FXML private TextField txtGiaNhap;
@@ -76,6 +77,29 @@ public class FXMLQLSanPhamController implements Initializable {
         }
         loadTable();
         loadSanPham("");
+        
+        this.tbSanPham.setRowFactory(obj -> {
+            TableRow r = new TableRow();
+            r.setOnMouseClicked(e -> {  
+                try {
+                    Connection conn = JdbcUtils.getConn();
+                    LoaiSPService l = new LoaiSPService(conn);
+                    SanPham s = this.tbSanPham.getSelectionModel().getSelectedItem();
+                    txtId.setText(String.valueOf(s.getIdSP()));
+                    txtTen.setText(s.getTenSP());
+                    txtSoLuong.setText(String.valueOf(s.getSoLuong()));
+                    txtGiaNhap.setText(s.getDonGiaNhap().toString());
+                    txtGiaBan.setText(s.getDonGiaBan().toString());
+                    txtAnh.setText(s.getAnh().toString());
+                    cbLoaiSP.getSelectionModel().select(l.getCateById(s.getLoaiSP_id()));
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FXMLQLSanPhamController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+            
+            return r;
+        });
     }
     
     public void loadForm() {
@@ -87,6 +111,7 @@ public class FXMLQLSanPhamController implements Initializable {
         imgV.setImage(null);
     }
     
+     
     public void loadhandle(ActionEvent event) {
         Stage stage = (Stage) ap.getScene().getWindow();
         FileChooser fc = new FileChooser();
@@ -195,6 +220,34 @@ public class FXMLQLSanPhamController implements Initializable {
             } else
                 Utils.getBox("FAILED", Alert.AlertType.ERROR).show();
             conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLQLSanPhamController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        loadForm();
+    }
+    
+    public void updateHandle(ActionEvent e) throws IOException {
+        try {
+            Connection conn = JdbcUtils.getConn();
+            SanPhamService sv = new SanPhamService(conn);
+            SanPham s = new SanPham();
+            
+            s.setTenSP(txtTen.getText());
+            s.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+            s.setDonGiaNhap(new BigDecimal(txtGiaNhap.getText()));
+            s.setDonGiaBan(new BigDecimal(1800000));
+            s.setAnh(txtAnh.getText().getBytes());
+            s.setLoaiSP_id(this.cbLoaiSP.getSelectionModel().getSelectedItem().getIdLoaiSP());
+            
+            s.setIdSP(Integer.parseInt(txtId.getText()));
+            
+            if (sv.capNhatSanPham(s) == true){
+                Utils.getBox("SUCCESSFUL", Alert.AlertType.INFORMATION).show();
+                loadSanPham("");
+            } else
+                Utils.getBox("FAILED", Alert.AlertType.ERROR).show();
+            conn.close();
+            
         } catch (SQLException ex) {
             Logger.getLogger(FXMLQLSanPhamController.class.getName()).log(Level.SEVERE, null, ex);
         }

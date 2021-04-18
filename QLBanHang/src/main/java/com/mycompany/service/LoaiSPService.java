@@ -7,6 +7,7 @@ package com.mycompany.service;
 
 import com.mycompany.pojo.LoaiSP;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,5 +38,22 @@ public class LoaiSPService {
             re.add(c);
         }
         return re;
+    }
+    
+    public LoaiSP getCateById(int id) throws SQLException {
+        String sql = "SELECT * FROM loaisp WHERE idLoaiSP=?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setInt(1, id);
+        
+        ResultSet rs = stm.executeQuery();
+        LoaiSP c = null;
+        while (rs.next()) {
+            c = new LoaiSP();
+            
+            c.setIdLoaiSP(rs.getInt("idLoaiSP"));
+            c.setTenLoaiSP(rs.getString("tenLoaiSP"));
+        }
+        
+        return c;
     }
 }

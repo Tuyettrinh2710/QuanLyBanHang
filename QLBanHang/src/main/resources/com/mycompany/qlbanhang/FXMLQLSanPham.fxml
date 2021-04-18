@@ -20,7 +20,8 @@
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.39999999999998" minWidth="10.0" prefWidth="200.39999999999998" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
@@ -29,7 +30,7 @@
       <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="130.39999999999998" minHeight="10.0" prefHeight="52.999975585937506" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="130.39999999999998" minHeight="10.0" prefHeight="18.79998779296875" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="137.2000122070312" minHeight="10.0" prefHeight="137.2000122070312" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="140.0" minHeight="10.0" prefHeight="140.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label id="title" prefHeight="54.0" prefWidth="267.0" stylesheets="@styleSP.css" text="Quản Lý Sản Phẩm" GridPane.columnIndex="1" GridPane.columnSpan="3">
@@ -37,26 +38,28 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Label text="Tên sản phẩm:" GridPane.rowIndex="1" />
-      <Label text="Số lượng:" GridPane.rowIndex="2" />
-      <Label text="Đơn giá nhập:" GridPane.rowIndex="3" />
-      <Label text="Đơn giá bán:" GridPane.rowIndex="4" />
-      <Label text="File ảnh:" GridPane.rowIndex="5" />
-      <Label text="Loại sản phẩm:" GridPane.rowIndex="6" />
-      <TextField fx:id="txtTen" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TextField fx:id="txtSoLuong" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField fx:id="txtGiaNhap" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <TextField fx:id="txtGiaBan" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <TextField fx:id="txtAnh" editable="false" opacity="0.33" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <ComboBox fx:id="cbLoaiSP" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Pane prefHeight="58.0" prefWidth="238.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+      <Label text="Tên sản phẩm:" GridPane.rowIndex="2" />
+      <Label text="Số lượng:" GridPane.rowIndex="3" />
+      <Label text="Đơn giá nhập:" GridPane.rowIndex="4" />
+      <Label text="Đơn giá bán:" GridPane.rowIndex="5" />
+      <Label text="File ảnh:" GridPane.rowIndex="6" />
+      <Label text="Loại sản phẩm:" GridPane.rowIndex="7" />
+      <TextField fx:id="txtTen" promptText="Nhập tên sản phẩm " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="txtSoLuong" promptText="Nhập số lượng. VD: 5" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="txtGiaNhap" promptText="Nhập đơn giá mua. VD 1000000" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="txtGiaBan" promptText="Nhập đơn giá bán. VD 1600000" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <TextField fx:id="txtAnh" editable="false" opacity="0.33" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <ComboBox fx:id="cbLoaiSP" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Pane prefHeight="58.0" prefWidth="238.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
          <children>
             <Button fx:id="btThem" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#addHandle" prefHeight="36.0" prefWidth="90.0" text="Thêm" />
-            <Button fx:id="btCapNhat" layoutX="111.0" layoutY="10.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Cập nhật" />
+            <Button fx:id="btCapNhat" layoutX="111.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateHandle" prefHeight="36.0" prefWidth="90.0" text="Cập nhật" />
          </children>
       </Pane>
-      <ImageView fx:id="imgV" fitHeight="133.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="3" />
-      <Button fx:id="btUpload" mnemonicParsing="false" onAction="#loadhandle" prefHeight="26.0" prefWidth="90.0" text="Tải ảnh" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-      <TableView fx:id="tbSanPham" prefHeight="135.0" prefWidth="651.0" GridPane.columnSpan="4" GridPane.rowIndex="9" />
+      <ImageView fx:id="imgV" fitHeight="133.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.rowSpan="3" />
+      <Button fx:id="btUpload" mnemonicParsing="false" onAction="#loadhandle" prefHeight="26.0" prefWidth="90.0" text="Tải ảnh" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+      <TableView fx:id="tbSanPham" prefHeight="135.0" prefWidth="651.0" GridPane.columnSpan="4" GridPane.rowIndex="10" />
+      <Label text="Mã sản phẩm:" GridPane.rowIndex="1" />
+      <TextField fx:id="txtId" editable="false" opacity="0.33" GridPane.columnIndex="1" GridPane.rowIndex="1" />
    </children>
 </GridPane>
