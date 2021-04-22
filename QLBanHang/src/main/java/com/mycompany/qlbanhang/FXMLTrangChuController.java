@@ -49,4 +49,17 @@ public class FXMLTrangChuController implements Initializable {
             Logger.getLogger(FXMLTrangChuController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void timKiemHandle(ActionEvent e) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("FXMLTimKiem.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLTrangChuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

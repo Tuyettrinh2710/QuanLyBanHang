@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@styleSP.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qlbanhang.FXMLTimKiemController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="625.0" stylesheets="@styleSP.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qlbanhang.FXMLTimKiemController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -20,7 +20,7 @@
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2">
          <children>
-            <TextField fx:id="txtTimKiem" layoutX="182.0" layoutY="30.0" prefHeight="25.0" prefWidth="197.0" />
+            <TextField fx:id="txtTimKiem" layoutX="194.0" layoutY="39.0" prefHeight="25.0" prefWidth="197.0" promptText="Nhập tên sản phẩm cần tìm" />
          </children>
       </Pane>
       <TableView fx:id="tbSanPham" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />

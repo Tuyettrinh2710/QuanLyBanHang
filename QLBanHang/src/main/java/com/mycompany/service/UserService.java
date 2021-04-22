@@ -40,7 +40,7 @@ public class UserService {
 //        }
 //        return re;
 //    }
-    public boolean dangNhap(String user, String pass) throws SQLException {
+    public boolean account(String user, String pass) throws SQLException {
         String sql = "SELECT * FROM user WHERE username = ? AND password = ?";
         PreparedStatement stm = this.conn.prepareStatement(sql);
         stm.setString(1, user);

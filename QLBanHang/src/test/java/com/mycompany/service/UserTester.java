@@ -47,7 +47,7 @@ public class UserTester {
    public void usernameNull() {
         try {
             UserService us = new UserService(CONN);
-            Assertions.assertFalse(us.dangNhap("", "123456"));
+            Assertions.assertFalse(us.account("", "123456"));
         } catch (SQLException ex) {
             Logger.getLogger(UserTester.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -57,7 +57,7 @@ public class UserTester {
    public void passwordNull() {
         try {
             UserService us = new UserService(CONN);
-            Assertions.assertFalse(us.dangNhap("minh01", ""));
+            Assertions.assertFalse(us.account("minh01", ""));
         } catch (SQLException ex) {
             Logger.getLogger(UserTester.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,7 +68,7 @@ public class UserTester {
         try {
             UserService us = new UserService(CONN);
            
-            Assertions.assertFalse(us.dangNhap("", ""));
+            Assertions.assertFalse(us.account("", ""));
         } catch (SQLException ex) {
             Logger.getLogger(UserTester.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -78,7 +78,7 @@ public class UserTester {
    public void userTonTai() {
         try {
             UserService us = new UserService(CONN);
-            Assertions.assertTrue(us.dangNhap("minh01", "123456"));
+            Assertions.assertTrue(us.account("minh01", "123456"));
         } catch (SQLException ex) {
             Logger.getLogger(UserTester.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -87,7 +87,7 @@ public class UserTester {
    @Test
     public void testTimeout() {
         Assertions.assertTimeoutPreemptively(Duration.ofSeconds(1), () -> {
-            new UserService(CONN).dangNhap("minh01", "123456");
+            new UserService(CONN).account("minh01", "123456");
         });
     }
 }

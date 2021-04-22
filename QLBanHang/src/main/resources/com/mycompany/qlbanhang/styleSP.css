@@ -19,3 +19,7 @@ Label#title {
 Label, Button {
     -fx-font-size: 16px;
 }
+
+Pane#p {
+    -fx-border: 2px;
+}
