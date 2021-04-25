@@ -7,6 +7,7 @@ package com.mycompany.service;
 
 import com.mycompany.pojo.NhanVien;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -44,4 +45,20 @@ public class NhanVienService {
         }
         return re;
     }
+    
+    public NhanVien getIDTenNV(String username) throws SQLException {
+        String sql = "SELECT idNV, tenNV from banhangdb.nhanvien, banhangdb.user where nhanvien.idNV = user.id AND username = ?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setString(1, username);
+        
+        ResultSet r = stm.executeQuery();
+        NhanVien n = null;
+        
+        while (r.next()) {
+            n = new NhanVien();
+            n.setMaNV(r.getString("idNV"));
+            n.setTenNV(r.getString("tenNV"));
+        }
+        return n;
+    } 
 }

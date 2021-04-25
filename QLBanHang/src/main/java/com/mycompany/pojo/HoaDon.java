@@ -7,29 +7,30 @@ package com.mycompany.pojo;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import javafx.scene.control.DatePicker;
 
 /**
  *
  * @author CasMap
  */
 public class HoaDon {
-    private String maHD;
+    private int maHD;
     private String maNV;
     private Date ngayBan;
     private String maKH;
-    private BigDecimal tongTien;
+    
 
     /**
      * @return the maHD
      */
-    public String getMaHD() {
+    public int getMaHD() {
         return maHD;
     }
 
     /**
      * @param maHD the maHD to set
      */
-    public void setMaHD(String maHD) {
+    public void setMaHD(int maHD) {
         this.maHD = maHD;
     }
 
@@ -75,17 +76,7 @@ public class HoaDon {
         this.maKH = maKH;
     }
 
-    /**
-     * @return the tongTien
-     */
-    public BigDecimal getTongTien() {
-        return tongTien;
-    }
-
-    /**
-     * @param tongTien the tongTien to set
-     */
-    public void setTongTien(BigDecimal tongTien) {
-        this.tongTien = tongTien;
+    public void setNgayBan(DatePicker dpNgay) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

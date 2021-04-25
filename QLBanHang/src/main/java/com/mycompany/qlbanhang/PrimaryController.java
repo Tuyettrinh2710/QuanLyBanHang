@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -37,23 +38,20 @@ public class PrimaryController implements Initializable{
         //TODO
     }
     
-    public void dangNhapHandle(ActionEvent e) {
+    public void dangNhapHandle(ActionEvent e) throws IOException {
         try {
             Connection conn = JdbcUtils.getConn();
             UserService us = new UserService(conn);
             
             if (us.account(txtUsername.getText(), txtPassword.getText()) == true) {
-                Parent root;
-                try {
-                    root = FXMLLoader.load(getClass().getResource("FXMLTrangChu.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (IOException ex) {
-                    Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
-            
-                }
+                Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLTrangChu.fxml"));
+                Parent root = loader.load();
+                FXMLTrangChuController controller = loader.getController();
+                controller.nhanVien(txtUsername.getText());
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             } else {
                 Utils.getBox("Username hoặc password không hợp lệ!!!!", Alert.AlertType.ERROR).show();
             }

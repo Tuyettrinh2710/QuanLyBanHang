@@ -5,7 +5,7 @@
  */
 package com.mycompany.service;
 
-import com.mycompany.pojo.NhanVien;
+import com.mycompany.pojo.KhachHang;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.Duration;
@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author CasMap
  */
-public class NhanVienTester {
+public class KhachHangTester {
     private static Connection CONN;
     
     @BeforeAll
@@ -45,38 +45,22 @@ public class NhanVienTester {
     }
     
     @Test
-    public void testSoLuongNV() {
-        
+    public void testLayKHById() {
         try {
             int expected = 2;
-            NhanVienService ns = new NhanVienService(CONN);
-            List<NhanVien> nv = ns.getNhanVien();
-            System.out.println(nv);
-            Assertions.assertTrue(nv.size() >= expected);
+            KhachHangService ks = new KhachHangService(CONN);
+//            KhachHang k = ks.getKHById("KH01");
+            List<KhachHang> kh = ks.getKhachhang();
+            Assertions.assertTrue(kh.size() >= expected);
         } catch (SQLException ex) {
-            Logger.getLogger(NhanVienTester.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KhachHangTester.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    @Test
-    public void testLayNVCoUser() {
-        try {
-            int expected = 1;
-            NhanVienService ns = new NhanVienService(CONN);
-            NhanVien n = ns.getIDTenNV("thanh01");
-            List<NhanVien> nv = new ArrayList<>();
-            nv.add(n);
-            Assertions.assertEquals(nv.size(), expected);
-        } catch (SQLException ex) {
-            Logger.getLogger(NhanVienTester.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-    }
-    
-    @Test
+     @Test
     public void testTimeout() {
         Assertions.assertTimeoutPreemptively(Duration.ofSeconds(1), () -> {
-            new NhanVienService(CONN).getIDTenNV("thanh01");
+            new KhachHangService(CONN).getKHById("KH01");
         });
     }
 }

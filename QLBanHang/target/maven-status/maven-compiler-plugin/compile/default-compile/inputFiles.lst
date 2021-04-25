@@ -13,9 +13,11 @@ D:\QuanLyBanHang\QLBanHang\src\main\java\com\mycompany\qlbanhang\FXMLThanhToanCo
 D:\QuanLyBanHang\QLBanHang\src\main\java\com\mycompany\qlbanhang\FXMLTimKiemController.java
 D:\QuanLyBanHang\QLBanHang\src\main\java\com\mycompany\qlbanhang\PrimaryController.java
 D:\QuanLyBanHang\QLBanHang\src\main\java\com\mycompany\pojo\HoaDon.java
+D:\QuanLyBanHang\QLBanHang\src\main\java\com\mycompany\service\KhachHangService.java
 D:\QuanLyBanHang\QLBanHang\src\main\java\com\mycompany\qlbanhang\Utils.java
 D:\QuanLyBanHang\QLBanHang\src\main\java\com\mycompany\service\SanPhamService.java
 D:\QuanLyBanHang\QLBanHang\src\main\java\com\mycompany\qlbanhang\App.java
+D:\QuanLyBanHang\QLBanHang\src\main\java\com\mycompany\service\HoaDonService.java
 D:\QuanLyBanHang\QLBanHang\src\main\java\module-info.java
 D:\QuanLyBanHang\QLBanHang\src\main\java\com\mycompany\pojo\KhachHang.java
 D:\QuanLyBanHang\QLBanHang\src\main\java\com\mycompany\pojo\LoaiSP.java

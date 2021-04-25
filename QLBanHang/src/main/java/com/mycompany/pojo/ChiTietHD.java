@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * @author CasMap
  */
 public class ChiTietHD {
-    private String maHD;
+    private int maHD;
     private int maSp;
     private int sl;
     private BigDecimal donGia;
@@ -22,14 +22,14 @@ public class ChiTietHD {
     /**
      * @return the maHD
      */
-    public String getMaHD() {
+    public int getMaHD() {
         return maHD;
     }
 
     /**
      * @param maHD the maHD to set
      */
-    public void setMaHD(String maHD) {
+    public void setMaHD(int maHD) {
         this.maHD = maHD;
     }
 

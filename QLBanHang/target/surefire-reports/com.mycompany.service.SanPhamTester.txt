@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.mycompany.service.SanPhamTester
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.538 s - in com.mycompany.service.SanPhamTester
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.377 s - in com.mycompany.service.SanPhamTester
