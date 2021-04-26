@@ -21,18 +21,25 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -63,7 +70,8 @@ public class FXMLThanhToanController implements Initializable {
     @FXML private Button btTaoHD;
     @FXML private Button btThem;
     @FXML private TableView<ChiTietHD> tbChiTietHD;
-    
+    @FXML private Button btHuy;
+    private List<ChiTietHD> l = new ArrayList<ChiTietHD>();
     
     /**
      * Initializes the controller class.
@@ -136,7 +144,8 @@ public class FXMLThanhToanController implements Initializable {
            txtThanhTien.setText(tongTien.toString());
        });
        loadTable();
-       loadChiTietHD();
+//       loadChiTietHD();
+       this.tbChiTietHD.setItems(FXCollections.observableList(l));
     }    
     
     public void loadNhanVien(String ma, String ten) {
@@ -155,7 +164,25 @@ public class FXMLThanhToanController implements Initializable {
             ex.printStackTrace();
             Logger.getLogger(FXMLThanhToanController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+    }
+    
+    public void loadSP() {
+        txtMaSP.setText("");
+        txtTenSP.setText("");
+        txtSoLuong.setText("");
+        txtDonGia.setText("");
+        txtThanhTien.setText("0");
+        txtGiamGia.setText("0.0");
+    }
+    
+    public void loadForm() {
+        txtMaHD.setText("");
+        txtMaKH.setText("");
+        txtTenKH.setText("");
+        txtDiaChi.setText("");
+        txtSDT.setText("");
+        loadSP();
+        txtTongTien.setText("0");
     }
     
     public void loadTable() {
@@ -177,8 +204,43 @@ public class FXMLThanhToanController implements Initializable {
         TableColumn colThanhTien = new TableColumn("Thành tiền");
         colThanhTien.setCellValueFactory(new PropertyValueFactory("thanhTien"));
         
+        TableColumn colAction = new TableColumn();
+        colAction.setCellFactory((obj) -> {
+            Button btn = new Button("Xóa");
+            
+            btn.setOnAction(evt -> {
+                Utils.getBox("Bạn chắc chắn xóa không?", Alert.AlertType.CONFIRMATION)
+                        .showAndWait().ifPresent(bt -> {
+                                if (bt == ButtonType.OK) {
+                                    try {
+                                        TableCell cell = (TableCell) ((Button) evt.getSource()).getParent();
+                                        ChiTietHD c = (ChiTietHD) cell.getTableRow().getItem();
+                                        
+                                        Connection conn = JdbcUtils.getConn();
+                                        ChiTietHDService cs = new ChiTietHDService(conn);
+                                        
+                                        if (cs.xoaChiTietSP(c.getMaHD(), c.getMaSp())) {
+                                            Utils.getBox("Xóa sản phẩm khỏi hóa đơn thành công", Alert.AlertType.INFORMATION).show();
+                                            l.remove(c);
+                                        } else
+                                            Utils.getBox("Xóa sản phẩm thất bại", Alert.AlertType.ERROR).show();
+                                        
+                                        conn.close();
+                                    } catch (SQLException ex) {
+                                        ex.printStackTrace();
+                                        Logger.getLogger(FXMLQLSanPhamController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                            }
+                        });
+            });
+            
+            TableCell cell = new TableCell();
+            cell.setGraphic(btn);
+            return cell;
+        });
+        
         this.tbChiTietHD.getColumns().addAll(colId, colName, colSoLuong, 
-                        colDonGia, colGiamGia, colThanhTien);
+                        colDonGia, colGiamGia, colThanhTien, colAction);
     }
     
     public void toaHDHanle(ActionEvent e) {
@@ -219,7 +281,10 @@ public class FXMLThanhToanController implements Initializable {
             
             if(cs.themChiTietDH(c) == true) {
                 Utils.getBox("Sản phẩm được thêm vào chi tiết đơn hàng", Alert.AlertType.INFORMATION).show();
-                loadChiTietHD();
+//                loadChiTietHD();
+                l.add(c);
+                this.tbChiTietHD.setItems(FXCollections.observableList(l));
+                loadSP();
             }else
                 Utils.getBox("Thêm sản phẩm vào chi tiết đơn hàng thất bại!!!!!!", Alert.AlertType.ERROR).show();
             
@@ -227,6 +292,23 @@ public class FXMLThanhToanController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(FXMLThanhToanController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+    }
+    public void huyHandle(ActionEvent e) {
+        try {
+            Connection conn = JdbcUtils.getConn();
+            ChiTietHDService cs = new ChiTietHDService(conn);
+            HoaDonService hs = new HoaDonService(conn);
+            if(cs.xoaChiTietDH(Integer.parseInt(txtMaHD.getText())) == true)
+                if (hs.xoaHD(Integer.parseInt(txtMaHD.getText()))) {
+                    Utils.getBox("Hủy đơn hàng thành công!!!!!!", Alert.AlertType.ERROR).show();
+                    loadForm();
+                    this.tbChiTietHD.getItems().clear();
+                }
+            else
+                 Utils.getBox("Hủy đơn hàng thất bại!!!!!!", Alert.AlertType.ERROR).show();
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLThanhToanController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

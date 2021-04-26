@@ -51,4 +51,12 @@ public class HoaDonService {
         }
         return hoaDonId;
     }
+    
+    public boolean xoaHD(int hd) throws SQLException {
+        String sql = "DELETE FROM hoadon WHERE idHD = ?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setInt(1, hd);
+        int row = stm.executeUpdate();
+        return row > 0;
+    }
 }

@@ -60,4 +60,21 @@ public class ChiTietHDService {
         int row = stm.executeUpdate();
         return row > 0;
     }
+    
+    public boolean xoaChiTietSP(int hd, int sp) throws SQLException {
+        String sql = "DELETE FROM chitiethd WHERE hd_id = ? AND sp_id = ?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setInt(1, hd);
+        stm.setInt(2, sp);
+        int row = stm.executeUpdate();
+        return row > 0;
+    }
+    
+    public boolean xoaChiTietDH(int hd) throws SQLException {
+        String sql = "DELETE FROM chitiethd WHERE hd_id = ?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setInt(1, hd);
+        int row = stm.executeUpdate();
+        return row > 0;
+    }
 }

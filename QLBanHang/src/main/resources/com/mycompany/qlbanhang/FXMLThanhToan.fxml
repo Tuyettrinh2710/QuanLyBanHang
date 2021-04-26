@@ -101,14 +101,9 @@
       </Button>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="14">
          <children>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Lưu hóa đơn">
+            <Button fx:id="btHuy" mnemonicParsing="false" onAction="#huyHandle" prefHeight="50.0" prefWidth="150.0" text="Hủy hóa đơn">
                <HBox.margin>
-                  <Insets left="60.0" right="40.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Hủy hóa đơn">
-               <HBox.margin>
-                  <Insets right="40.0" />
+                  <Insets left="190.0" right="40.0" />
                </HBox.margin>
             </Button>
             <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="In hóa đơn" />

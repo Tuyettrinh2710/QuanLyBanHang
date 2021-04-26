@@ -48,29 +48,22 @@ public class HoaDonTester {
     }
     
     @Test
-    public void ThemHD() throws SQLException {
-        HoaDonService hs = new HoaDonService(CONN);
-        HoaDon h = new HoaDon();
-        h.setMaNV("NV02");
-        h.setMaKH("KH01");
-        h.setNgayBan(new java.sql.Date(System.currentTimeMillis()));
-        
-        Assertions.assertTrue(hs.layHoaDon(h));
+    public void xoaHD() {
+        try {
+            HoaDonService c = new HoaDonService(CONN);
+            Assertions.assertTrue(c.xoaHD(5));
+        } catch (SQLException ex) {
+            Logger.getLogger(ChiTietDHTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-//    @Test
-//    public void testTimeout() {
-//         try {
-//             HoaDon h = new HoaDon();
-//             h.setMaNV("NV02");
-//             h.setMaKH("KH02");
-//             SimpleDateFormat d = new SimpleDateFormat("yyyy/MM/dd");
-//             h.setNgayBan((Date) d.parse("2020-04-24"));
-//             Assertions.assertTimeoutPreemptively(Duration.ofSeconds(1), () -> {
-//                 new HoaDonService(CONN).layIdHoaDon(h);
-//             });
-//         } catch (ParseException ex) {
-//             Logger.getLogger(HoaDonTester.class.getName()).log(Level.SEVERE, null, ex);
-//         }
-//    }
+    @Test
+    public void xoaHDKhongTonTai() {
+        try {
+            HoaDonService c = new HoaDonService(CONN);
+            Assertions.assertFalse(c.xoaHD(0));
+        } catch (SQLException ex) {
+            Logger.getLogger(ChiTietDHTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
