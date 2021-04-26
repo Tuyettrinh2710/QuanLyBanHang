@@ -54,7 +54,7 @@
       <Label text="Tên khách hàng:" GridPane.columnIndex="4" GridPane.rowIndex="3" />
       <Label text="Địa chỉ:" GridPane.columnIndex="4" GridPane.rowIndex="4" />
       <Label text="Số điện thoại:" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-      <TextField fx:id="txtMaHD" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="txtMaHD" focusTraversable="false" opacity="0.33" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <TextField fx:id="txtMaKH" GridPane.columnIndex="5" GridPane.rowIndex="2" />
       <TextField fx:id="txtTenKH" editable="false" opacity="0.33" GridPane.columnIndex="5" GridPane.rowIndex="3" />
       <TextField fx:id="txtDiaChi" editable="false" opacity="0.33" GridPane.columnIndex="5" GridPane.rowIndex="4" />
@@ -86,15 +86,15 @@
       </Label>
       <TextField fx:id="txtSoLuong" GridPane.columnIndex="1" GridPane.rowIndex="9" />
       <TextField fx:id="txtMaSP" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <TextField fx:id="txtTenSP" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+      <TextField fx:id="txtTenSP" editable="false" opacity="0.33" GridPane.columnIndex="3" GridPane.rowIndex="8" />
       <TextField fx:id="txtGiamGia" GridPane.columnIndex="3" GridPane.rowIndex="9" />
-      <TextField fx:id="txtDonGia" GridPane.columnIndex="5" GridPane.rowIndex="8" />
-      <TextField fx:id="txtThanhTien" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+      <TextField fx:id="txtDonGia" editable="false" opacity="0.33" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+      <TextField fx:id="txtThanhTien" editable="false" opacity="0.33" GridPane.columnIndex="5" GridPane.rowIndex="9" />
       <Label text="Mã sản phẩm:" GridPane.rowIndex="8" />
-      <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="6" GridPane.rowIndex="12" />
+      <TableView fx:id="tbChiTietHD" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="6" GridPane.rowIndex="12" />
       <Label text="Tổng tiền:" GridPane.columnIndex="4" GridPane.rowIndex="13" />
       <TextField fx:id="txtTongTien" GridPane.columnIndex="5" GridPane.rowIndex="13" />
-      <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="72.0" text="Thêm" GridPane.columnIndex="5" GridPane.rowIndex="10">
+      <Button fx:id="btThem" mnemonicParsing="false" onAction="#themHandle" prefHeight="37.0" prefWidth="72.0" text="Thêm" GridPane.columnIndex="5" GridPane.rowIndex="10">
          <GridPane.margin>
             <Insets top="10.0" />
          </GridPane.margin>

@@ -210,15 +210,15 @@ public class FXMLQLSanPhamController implements Initializable {
             s.setTenSP(txtTen.getText());
             s.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
             s.setDonGiaNhap(new BigDecimal(txtGiaNhap.getText()));
-            s.setDonGiaBan(new BigDecimal(1800000));
+            s.setDonGiaBan(new BigDecimal(txtGiaBan.getText()));
             s.setAnh(Files.readAllBytes(new File(txtAnh.getText()).toPath()));
             s.setLoaiSP_id(this.cbLoaiSP.getSelectionModel().getSelectedItem().getIdLoaiSP());
             
             if (sv.themSanPham(s) == true){
-                Utils.getBox("SUCCESSFUL", Alert.AlertType.INFORMATION).show();
+                Utils.getBox("Sản phẩm được thêm thành công", Alert.AlertType.INFORMATION).show();
                 loadSanPham("");
             } else
-                Utils.getBox("FAILED", Alert.AlertType.ERROR).show();
+                Utils.getBox("Thêm sản phẩm thất bại!!!!!!", Alert.AlertType.ERROR).show();
             conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(FXMLQLSanPhamController.class.getName()).log(Level.SEVERE, null, ex);

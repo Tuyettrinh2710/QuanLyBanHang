@@ -34,6 +34,27 @@ public class SanPhamService {
         this.conn = conn;
     }
     
+    public SanPham laySanPhamById(int id) throws SQLException {
+        String sql = "SELECT * FROM sanpham WHERE idSP = ?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setInt(1, id);
+        
+        ResultSet r = stm.executeQuery();
+        
+        SanPham s = null;
+        while (r.next()) {
+            s = new SanPham();
+            s.setIdSP(r.getInt("idSP"));
+            s.setTenSP(r.getString("tenSP"));
+            s.setSoLuong(r.getInt("soLuong"));
+            s.setDonGiaNhap(r.getBigDecimal("donGiaNhap"));
+            s.setDonGiaBan(r.getBigDecimal("donGiaBan"));
+            s.setAnh(r.getBytes("anh"));
+            s.setLoaiSP_id(r.getInt("loaiSP_id"));
+        }
+        return s;
+    }
+    
     public List<SanPham> getSanPhams(String kw) throws SQLException{
         if (kw == null)
             throw new SQLDataException();

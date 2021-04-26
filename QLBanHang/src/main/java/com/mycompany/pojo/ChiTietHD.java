@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 public class ChiTietHD {
     private int maHD;
     private int maSp;
+    private String tenSP;
     private int sl;
     private BigDecimal donGia;
     private float giamGia;
@@ -101,5 +102,19 @@ public class ChiTietHD {
      */
     public void setThanhTien(BigDecimal thanhTien) {
         this.thanhTien = thanhTien;
+    }
+
+    /**
+     * @return the tenSP
+     */
+    public String getTenSP() {
+        return tenSP;
+    }
+
+    /**
+     * @param tenSP the tenSP to set
+     */
+    public void setTenSP(String tenSP) {
+        this.tenSP = tenSP;
     }
 }
