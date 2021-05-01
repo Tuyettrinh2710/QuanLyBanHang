@@ -72,6 +72,7 @@ public class FXMLThanhToanController implements Initializable {
     @FXML private TableView<ChiTietHD> tbChiTietHD;
     @FXML private Button btHuy;
     private List<ChiTietHD> l = new ArrayList<ChiTietHD>();
+    private BigDecimal tong = new BigDecimal(0);
     
     /**
      * Initializes the controller class.
@@ -221,6 +222,10 @@ public class FXMLThanhToanController implements Initializable {
                                         
                                         if (cs.xoaChiTietSP(c.getMaHD(), c.getMaSp())) {
                                             Utils.getBox("Xóa sản phẩm khỏi hóa đơn thành công", Alert.AlertType.INFORMATION).show();
+//                                            BigDecimal giaTien = new BigDecimal(txtThanhTien.getText());
+                                            BigDecimal tongTien = new BigDecimal(txtTongTien.getText());
+                                            tong = tongTien.subtract(c.getThanhTien());
+                                            txtTongTien.setText(tong.toString());
                                             l.remove(c);
                                         } else
                                             Utils.getBox("Xóa sản phẩm thất bại", Alert.AlertType.ERROR).show();
@@ -282,6 +287,10 @@ public class FXMLThanhToanController implements Initializable {
             if(cs.themChiTietDH(c) == true) {
                 Utils.getBox("Sản phẩm được thêm vào chi tiết đơn hàng", Alert.AlertType.INFORMATION).show();
 //                loadChiTietHD();
+                BigDecimal giaTien = new BigDecimal(txtThanhTien.getText());
+                BigDecimal tongTien = new BigDecimal(txtTongTien.getText());
+                tong = tongTien.add(giaTien);
+                txtTongTien.setText(tong.toString());
                 l.add(c);
                 this.tbChiTietHD.setItems(FXCollections.observableList(l));
                 loadSP();
@@ -298,13 +307,17 @@ public class FXMLThanhToanController implements Initializable {
             Connection conn = JdbcUtils.getConn();
             ChiTietHDService cs = new ChiTietHDService(conn);
             HoaDonService hs = new HoaDonService(conn);
-            if(cs.xoaChiTietDH(Integer.parseInt(txtMaHD.getText())) == true)
-                if (hs.xoaHD(Integer.parseInt(txtMaHD.getText()))) {
+            if(cs.xoaChiTietDH(Integer.parseInt(txtMaHD.getText())) == true) {
+                if (hs.xoaHD(Integer.parseInt(txtMaHD.getText())) == true) {
                     Utils.getBox("Hủy đơn hàng thành công!!!!!!", Alert.AlertType.ERROR).show();
                     loadForm();
                     this.tbChiTietHD.getItems().clear();
                 }
-            else
+            } else if (hs.xoaHD(Integer.parseInt(txtMaHD.getText())) == true) {
+                Utils.getBox("Hủy đơn hàng thành công!!!!!!", Alert.AlertType.ERROR).show();
+                loadForm();
+                this.tbChiTietHD.getItems().clear();
+            } else
                  Utils.getBox("Hủy đơn hàng thất bại!!!!!!", Alert.AlertType.ERROR).show();
             conn.close();
         } catch (SQLException ex) {

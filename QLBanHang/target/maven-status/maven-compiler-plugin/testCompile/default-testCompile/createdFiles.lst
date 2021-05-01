@@ -1,3 +1,7 @@
+com\mycompany\service\ChiTietDHTester.class
 com\mycompany\service\LoaiSPTester.class
-com\mycompany\service\SanPhamTester.class
+com\mycompany\service\HoaDonTester.class
 com\mycompany\service\NhanVienTester.class
+com\mycompany\service\KhachHangTester.class
+com\mycompany\service\UserTester.class
+com\mycompany\service\SanPhamTester.class
