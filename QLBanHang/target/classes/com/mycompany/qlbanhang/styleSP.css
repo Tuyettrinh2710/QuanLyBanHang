@@ -16,10 +16,18 @@ Label#title {
     -fx-font-size: 32px;
 }
 
-Label, Button {
+Label, Button, Text {
     -fx-font-size: 16px;
 }
 
 Pane#p {
     -fx-border: 2px;
+}
+
+VBox {
+    -fx-padding: 20px 30px;
+}
+
+HBox {
+    -fx-padding: 20px 0px;
 }

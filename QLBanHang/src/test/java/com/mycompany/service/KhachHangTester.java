@@ -63,4 +63,94 @@ public class KhachHangTester {
             new KhachHangService(CONN).getKHById("KH01");
         });
     }
+    
+//    @Test
+//    public void them() {
+//        try {
+//            KhachHang k = new KhachHang();
+//            k.setMaKH("0983763212");
+//            k.setTenKH("Lê Mỹ Quyên");
+//            k.setDiaChi("371 Nguyễn Kiệm, P.3, Q.Gò Vấp, TP.HCM");
+//            k.setSdt("0983763212");
+//            KhachHangService ks = new KhachHangService(CONN);
+//            Assertions.assertTrue(ks.themKH(k));
+//        } catch (SQLException ex) {
+//            Logger.getLogger(KhachHangTester.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+    
+    @Test
+    public void themTrungIDKH() {
+        try {
+            KhachHang k = new KhachHang();
+            k.setMaKH("KH02");
+            k.setTenKH("sàdss");
+            k.setDiaChi("371 Nguyễn Kiệm, P.3, Q.Gò Vấp, TP.HCM");
+            k.setSdt("09837632121");
+            KhachHangService ks = new KhachHangService(CONN);
+            Assertions.assertFalse(ks.themKH(k));
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Test
+    public void themQuaDoDaiSDT() {
+        try {
+            KhachHang k = new KhachHang();
+            k.setMaKH("0983763212");
+            k.setTenKH("Lê Mỹ Quyên");
+            k.setDiaChi("371 Nguyễn Kiệm, P.3, Q.Gò Vấp, TP.HCM");
+            k.setSdt("09837632121");
+            KhachHangService ks = new KhachHangService(CONN);
+            Assertions.assertFalse(ks.themKH(k));
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     @Test
+    public void themQuaDoDaiID() {
+        try {
+            KhachHang k = new KhachHang();
+            k.setMaKH("09837632121");
+            k.setTenKH("Lê Mỹ Quyên");
+            k.setDiaChi("371 Nguyễn Kiệm, P.3, Q.Gò Vấp, TP.HCM");
+            k.setSdt("0983763212");
+            KhachHangService ks = new KhachHangService(CONN);
+            Assertions.assertFalse(ks.themKH(k));
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Test
+    public void idKHTonTai() {
+        try {
+            KhachHangService ks = new KhachHangService(CONN);
+            Assertions.assertTrue(ks.kiemTraIdTonTai("0983763212"));
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Test
+    public void idKHKhongTonTai() {
+        try {
+            KhachHangService ks = new KhachHangService(CONN);
+            Assertions.assertFalse(ks.kiemTraIdTonTai("adf"));
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Test
+    public void idKHNull() {
+        try {
+            KhachHangService ks = new KhachHangService(CONN);
+            Assertions.assertFalse(ks.kiemTraIdTonTai(""));
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

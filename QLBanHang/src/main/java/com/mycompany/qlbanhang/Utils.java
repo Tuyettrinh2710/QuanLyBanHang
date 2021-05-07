@@ -15,7 +15,6 @@ public class Utils {
     public static Alert getBox(String content, Alert.AlertType type) {
         Alert alert  = new Alert(type);
         alert.setContentText(content);
-        
         return alert;
     }
 }

@@ -4,4 +4,5 @@ com\mycompany\service\HoaDonTester.class
 com\mycompany\service\NhanVienTester.class
 com\mycompany\service\KhachHangTester.class
 com\mycompany\service\UserTester.class
+com\mycompany\service\DonHangTester.class
 com\mycompany\service\SanPhamTester.class

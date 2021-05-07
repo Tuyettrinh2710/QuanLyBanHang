@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="448.0" stylesheets="@styleSP.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qlbanhang.FXMLThongTinKHController">
+   <children>
+      <Label id="title" text="Thông Tin Khách Hàng">
+         <VBox.margin>
+            <Insets left="40.0" />
+         </VBox.margin></Label>
+      <HBox prefHeight="54.0" prefWidth="342.0">
+         <children>
+            <Label text="Họ tên:" />
+            <TextField fx:id="txtTen" prefHeight="26.0" prefWidth="280.0">
+               <HBox.margin>
+                  <Insets left="55.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox prefHeight="53.0" prefWidth="342.0">
+         <children>
+            <Label text="Địa chỉ:" />
+            <TextField fx:id="txtDiaChi" prefHeight="26.0" prefWidth="280.0">
+               <HBox.margin>
+                  <Insets left="55.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label text="Số điện thoại:" />
+            <TextField fx:id="txtSdt" prefHeight="26.0" prefWidth="280.0">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox prefHeight="55.0" prefWidth="342.0">
+         <children>
+            <Button fx:id="btTiepTuc" mnemonicParsing="false" onAction="#xacNhanHandle" prefHeight="37.0" prefWidth="78.0" text="Tiếp tục">
+               <HBox.margin>
+                  <Insets left="100.0" right="30.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btTroVe" mnemonicParsing="false" onAction="#backHandle" prefHeight="37.0" prefWidth="78.0" text="Trở về" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

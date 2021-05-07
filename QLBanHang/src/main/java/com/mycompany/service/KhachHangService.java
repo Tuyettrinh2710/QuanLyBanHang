@@ -57,4 +57,29 @@ public class KhachHangService {
         }
         return ks;
     }
+    
+    public boolean themKH(KhachHang k) throws SQLException {
+        String sql = "INSERT INTO banhangdb.khachhang(idKH, tenKH, diaChi, dienThoai) "
+                + "VALUES (?, ?, ?, ?)";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setString(1, k.getMaKH());
+        stm.setString(2, k.getTenKH());
+        stm.setString(3, k.getDiaChi());
+        stm.setString(4, k.getSdt());
+        
+        int row = stm.executeUpdate();
+        return row > 0;
+    }
+    
+    public boolean kiemTraIdTonTai(String id) throws SQLException {
+        String sql = "SELECT * FROM banhangdb.khachhang WHERE idKH = ?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setString(1, id);
+        
+        ResultSet r = stm.executeQuery();
+        if (r.next()) {
+            return true;
+        }
+        return false;
+    }
 }
