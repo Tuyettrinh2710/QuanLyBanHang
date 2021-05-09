@@ -108,5 +108,10 @@
             <Insets top="10.0" />
          </GridPane.margin>
       </Button>
+      <Button fx:id="btThanhToan" mnemonicParsing="false" onAction="#thanhToanHandle" text="Thanh toán" GridPane.columnIndex="4" GridPane.rowIndex="14">
+         <GridPane.margin>
+            <Insets top="10.0" />
+         </GridPane.margin>
+      </Button>
    </children>
 </GridPane>

@@ -66,6 +66,7 @@ public class FXMLXacNhanDHController implements Initializable {
     public void loadSP(SanPham s) {
         txtSanPham.setText(s.getTenSP());
         txtDonGia.setText(s.getDonGiaBan().toString());
+        txtThanhTien.setText(s.getDonGiaBan().toString());
         this.s = s;
     }
     

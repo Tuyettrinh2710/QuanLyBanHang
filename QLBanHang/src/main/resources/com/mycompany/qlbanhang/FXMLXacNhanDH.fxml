@@ -54,7 +54,7 @@
                <HBox.margin>
                   <Insets left="30.0" />
                </HBox.margin></Button>
-            <Button fx:id="btTroVe" mnemonicParsing="false" text="Trở về" visible="false">
+            <Button fx:id="btTroVe" mnemonicParsing="false" onAction="#troVeHandle" text="Trở về" visible="false">
                <HBox.margin>
                   <Insets left="100.0" />
                </HBox.margin>

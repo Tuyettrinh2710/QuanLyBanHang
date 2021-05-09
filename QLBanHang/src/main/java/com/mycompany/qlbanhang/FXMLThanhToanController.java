@@ -71,6 +71,7 @@ public class FXMLThanhToanController implements Initializable {
     @FXML private Button btThem;
     @FXML private TableView<ChiTietHD> tbChiTietHD;
     @FXML private Button btHuy;
+    @FXML private Button btThanhToan;
     private List<ChiTietHD> l = new ArrayList<ChiTietHD>();
     private BigDecimal tong = new BigDecimal(0);
     
@@ -261,11 +262,13 @@ public class FXMLThanhToanController implements Initializable {
             h.setNgayBan(new java.sql.Date(System.currentTimeMillis()));
             String s = String.valueOf(hs.layIdHoaDon(h));
             txtMaHD.setText(s);
-
             if (txtMaHD.equals("")){
                 Utils.getBox("Tạo hóa đơn thất bại", Alert.AlertType.ERROR).show();
-            } else
+            } else {
+                txtMaKH.setEditable(false);
+                btTaoHD.setDisable(true);
                 Utils.getBox("Tạo hóa đơn thành công", Alert.AlertType.INFORMATION).show();
+            }
             conn.close();
             
         } catch (SQLException ex) {
@@ -326,5 +329,18 @@ public class FXMLThanhToanController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(FXMLThanhToanController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void thanhToanHandle(ActionEvent e) {
+        if (txtMaHD.getText().equals("")) {
+            Utils.getBox("Mã hóa đơn trống thanh toán thất bại!!!!!!", Alert.AlertType.ERROR).show();
+        } else if (l.isEmpty()) {
+            Utils.getBox("Đơn hàng không có sản phẩm thanh toán thất bại!!!!!", Alert.AlertType.ERROR).show();
+        } else {
+            Utils.getBox("Thanh toán thành công", Alert.AlertType.INFORMATION).show();
+        }
+        txtMaKH.setEditable(true);
+        btTaoHD.setDisable(false);
+        loadForm();
     }
 }
