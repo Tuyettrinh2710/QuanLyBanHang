@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -40,6 +41,7 @@ import javafx.stage.Stage;
 public class FXMLDatHangController implements Initializable {
     @FXML private TextField txtTimKiem;
     @FXML private TableView<SanPham> tbSanPham;
+    @FXML private Button btXem;
 
     /**
      * Initializes the controller class.
@@ -49,6 +51,9 @@ public class FXMLDatHangController implements Initializable {
         // TODO
         loadTable();
         loadSanPham("");
+        this.txtTimKiem.textProperty().addListener((obj) -> {
+            loadSanPham(this.txtTimKiem.getText());
+        });
     }    
     
     public void loadSanPham(String kw){
@@ -75,10 +80,7 @@ public class FXMLDatHangController implements Initializable {
         TableColumn colSoLuong = new TableColumn("Số lượng");
         colSoLuong.setCellValueFactory(new PropertyValueFactory("soLuong"));
         
-        TableColumn colGiaNhap = new TableColumn("Giá nhập");
-        colGiaNhap.setCellValueFactory(new PropertyValueFactory("donGiaNhap"));
-        
-        TableColumn colGiaBan = new TableColumn("Giá bán");
+        TableColumn colGiaBan = new TableColumn("Đơn giá");
         colGiaBan.setCellValueFactory(new PropertyValueFactory("donGiaBan"));
         
         TableColumn colAnh = new TableColumn("Ảnh");
@@ -113,7 +115,19 @@ public class FXMLDatHangController implements Initializable {
             return cell;
         });
         
-        this.tbSanPham.getColumns().addAll(colId, colName, colSoLuong, 
-                        colGiaNhap, colGiaBan, colAnh, colLoai, colAction);
+        this.tbSanPham.getColumns().addAll(colId, colName, colSoLuong 
+                        , colGiaBan, colAnh, colLoai, colAction);
+    }
+    
+    public void xemHandle(ActionEvent e) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLXemSP.fxml"));
+        Parent root = loader.load();
+        FXMLXemSPController controller = loader.getController();
+        SanPham s = tbSanPham.getSelectionModel().getSelectedItem();
+        controller.load(s);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 }

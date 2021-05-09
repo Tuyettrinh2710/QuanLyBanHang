@@ -101,17 +101,20 @@ public class FXMLThanhToanController implements Initializable {
        
        txtMaSP.textProperty().addListener(obj -> {
            try {
+               Connection conn = JdbcUtils.getConn();
+               SanPhamService sv = new SanPhamService(conn);
                if (txtMaSP.getText() == ""){
                     txtTenSP.setText("");
                     txtDonGia.setText("");
-               } else {
-                    Connection conn = JdbcUtils.getConn();
-                    SanPhamService sv = new SanPhamService(conn);
+               } else if (sv.kiemTraIdSpTonTai(Integer.parseInt(txtMaSP.getText())) == true){
                     SanPham s = sv.laySanPhamById(Integer.parseInt(txtMaSP.getText()));
                     txtTenSP.setText(s.getTenSP());
                     txtDonGia.setText(String.valueOf(s.getDonGiaBan()));
-                    conn.close();
+               } else {
+                   txtTenSP.setText("");
+                    txtDonGia.setText("");
                }
+               conn.close();
            } catch (SQLException ex) {
                Logger.getLogger(FXMLThanhToanController.class.getName()).log(Level.SEVERE, null, ex);
            }

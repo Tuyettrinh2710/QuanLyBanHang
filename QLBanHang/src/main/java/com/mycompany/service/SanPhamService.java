@@ -55,6 +55,18 @@ public class SanPhamService {
         return s;
     }
     
+    public boolean kiemTraIdSpTonTai(int id) throws SQLException {
+        String sql = "SELECT * FROM sanpham WHERE idSP = ?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setInt(1, id);
+        
+        ResultSet r = stm.executeQuery();
+        
+        if (r.next()) 
+            return true;
+        return false;
+    }
+    
     public List<SanPham> getSanPhams(String kw) throws SQLException{
         if (kw == null)
             throw new SQLDataException();

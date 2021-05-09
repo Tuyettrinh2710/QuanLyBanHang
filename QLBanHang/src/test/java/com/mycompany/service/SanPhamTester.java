@@ -137,4 +137,24 @@ public class SanPhamTester {
 //            Logger.getLogger(SanPhamTester.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //   }
+    
+    @Test
+    public void idTonTai() {
+        try {
+            SanPhamService sv = new SanPhamService(CONN);
+            Assertions.assertTrue(sv.kiemTraIdSpTonTai(1));
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Test
+    public void idKhongTonTai() {
+        try {
+            SanPhamService sv = new SanPhamService(CONN);
+            Assertions.assertFalse(sv.kiemTraIdSpTonTai(0));
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

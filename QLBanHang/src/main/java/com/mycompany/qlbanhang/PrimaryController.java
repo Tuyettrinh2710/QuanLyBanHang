@@ -27,6 +27,7 @@ public class PrimaryController implements Initializable{
     @FXML private TextField txtUsername;
     @FXML private PasswordField txtPassword;
     @FXML private Button btDangNhap;
+    @FXML private Button btTroVe;
 //
 //    @FXML
 //    private void switchToSecondary() throws IOException {
@@ -58,5 +59,14 @@ public class PrimaryController implements Initializable{
         } catch (SQLException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void troVeHandle(ActionEvent e) throws IOException {
+        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLBanHang.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
