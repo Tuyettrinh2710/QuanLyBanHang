@@ -312,7 +312,7 @@ public class FXMLThanhToanController implements Initializable {
             HoaDonService hs = new HoaDonService(conn);
             if(cs.xoaChiTietDH(Integer.parseInt(txtMaHD.getText())) == true) {
                 if (hs.xoaHD(Integer.parseInt(txtMaHD.getText())) == true) {
-                    Utils.getBox("Hủy đơn hàng thành công!!!!!!", Alert.AlertType.ERROR).show();
+                    Utils.getBox("Hủy đơn hàng thành công!!!!!!", Alert.AlertType.INFORMATION).show();
                     loadForm();
                     this.tbChiTietHD.getItems().clear();
                 }

@@ -10,8 +10,10 @@ import com.mycompany.pojo.SanPham;
 import com.mycompany.service.JdbcUtils;
 import com.mycompany.service.LoaiSPService;
 import com.mycompany.service.SanPhamService;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.nio.file.Files;
@@ -90,7 +92,10 @@ public class FXMLQLSanPhamController implements Initializable {
                     txtSoLuong.setText(String.valueOf(s.getSoLuong()));
                     txtGiaNhap.setText(s.getDonGiaNhap().toString());
                     txtGiaBan.setText(s.getDonGiaBan().toString());
-                    txtAnh.setText(s.getAnh().toString());
+                    InputStream is = new ByteArrayInputStream(s.getAnh());
+                    txtAnh.setText(is.toString());
+                    Image img = new Image(is);
+                    imgV.setImage(img);
                     cbLoaiSP.getSelectionModel().select(l.getCateById(s.getLoaiSP_id()));
                     conn.close();
                 } catch (SQLException ex) {

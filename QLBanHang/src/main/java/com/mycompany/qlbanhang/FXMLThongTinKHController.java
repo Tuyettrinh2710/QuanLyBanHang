@@ -56,7 +56,9 @@ public class FXMLThongTinKHController implements Initializable {
     }
     
     public void xacNhanHandle(ActionEvent e) throws IOException {
-        if (txtSdt.getText().length() == 10) {
+        if (txtTen.getText().equals("") || txtDiaChi.getText().equals("")) {
+            Utils.getBox("Họ tên hoặc địa chỉ đang trống!!!!!!", Alert.AlertType.WARNING).show();
+        } else if (txtSdt.getText().length() == 10) {
             Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLXacNhanDH.fxml"));
             Parent root = loader.load();

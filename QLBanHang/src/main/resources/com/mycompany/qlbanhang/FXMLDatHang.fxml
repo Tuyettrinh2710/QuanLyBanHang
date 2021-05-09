@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
@@ -27,10 +28,19 @@
             <TextField fx:id="txtTimKiem" layoutX="226.0" layoutY="10.0" prefHeight="25.0" prefWidth="232.0" />
          </children>
       </Pane>
-      <Button fx:id="btXem" mnemonicParsing="false" onAction="#xemHandle" text="Xem chi tiết" GridPane.columnIndex="1" GridPane.rowIndex="3">
-         <GridPane.margin>
-            <Insets left="200.0" />
-         </GridPane.margin>
-      </Button>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <Button fx:id="btXem" mnemonicParsing="false" onAction="#xemHandle" prefHeight="37.0" prefWidth="117.0" text="Xem chi tiết">
+               <HBox.margin>
+                  <Insets left="60.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btTroVe" mnemonicParsing="false" onAction="#troVeHandle" prefHeight="38.0" prefWidth="117.0" text="Trở về">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </GridPane>

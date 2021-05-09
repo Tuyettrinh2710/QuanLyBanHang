@@ -42,6 +42,7 @@ public class FXMLDatHangController implements Initializable {
     @FXML private TextField txtTimKiem;
     @FXML private TableView<SanPham> tbSanPham;
     @FXML private Button btXem;
+    @FXML private Button btTroVe;
 
     /**
      * Initializes the controller class.
@@ -127,6 +128,15 @@ public class FXMLDatHangController implements Initializable {
         controller.load(s);
         Scene scene = new Scene(root);
         Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    public void troVeHandle(ActionEvent e) throws IOException {
+        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLBanHang.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }

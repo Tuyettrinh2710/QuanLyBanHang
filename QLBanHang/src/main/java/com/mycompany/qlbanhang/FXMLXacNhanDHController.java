@@ -46,6 +46,7 @@ public class FXMLXacNhanDHController implements Initializable {
     @FXML private Text txtThanhTien;
     @FXML private Button btXacNhan;
     @FXML private Button btHuy;
+    @FXML private Button btTroVe;
     private SanPham s = new SanPham();
 
     /**
@@ -87,6 +88,10 @@ public class FXMLXacNhanDHController implements Initializable {
             DonHangService ds = new DonHangService(conn);
             if (ds.themDH(d) == true) {
                 Utils.getBox("Đặt hàng thành công!!!!!", Alert.AlertType.INFORMATION).show();
+                btXacNhan.setDisable(true);
+                btHuy.setDisable(true);
+                btTroVe.setVisible(true);
+                
             } else {
                 Utils.getBox("Đặt hàng thất bại!!!!!!", Alert.AlertType.ERROR).show();
             }
@@ -119,5 +124,14 @@ public class FXMLXacNhanDHController implements Initializable {
         }catch (SQLException ex) {
             Logger.getLogger(FXMLXacNhanDHController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void troVeHandle(ActionEvent e) throws IOException {
+        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDatHang.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

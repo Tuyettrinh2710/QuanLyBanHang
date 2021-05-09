@@ -54,6 +54,11 @@
                <HBox.margin>
                   <Insets left="30.0" />
                </HBox.margin></Button>
+            <Button fx:id="btTroVe" mnemonicParsing="false" text="Trở về" visible="false">
+               <HBox.margin>
+                  <Insets left="100.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
       <Text fx:id="txtTen" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
