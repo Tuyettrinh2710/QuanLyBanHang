@@ -36,11 +36,11 @@
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label text="Số điện thoại:" />
-            <TextField fx:id="txtSdt" prefHeight="26.0" prefWidth="280.0">
+            <com.mycompany.qlbanhang.NumberText fx:id="txtSdt" prefHeight="26.0" prefWidth="280.0">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
-            </TextField>
+           </com.mycompany.qlbanhang.NumberText>
          </children>
       </HBox>
       <HBox prefHeight="55.0" prefWidth="342.0">

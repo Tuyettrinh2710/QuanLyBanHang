@@ -335,12 +335,21 @@ public class FXMLThanhToanController implements Initializable {
         if (txtMaHD.getText().equals("")) {
             Utils.getBox("Mã hóa đơn trống thanh toán thất bại!!!!!!", Alert.AlertType.ERROR).show();
         } else if (l.isEmpty()) {
-            Utils.getBox("Đơn hàng không có sản phẩm thanh toán thất bại!!!!!", Alert.AlertType.ERROR).show();
+            try {
+                Connection conn = JdbcUtils.getConn();
+                HoaDonService hs = new HoaDonService(conn);
+                if (hs.xoaHD(Integer.parseInt(txtMaHD.getText())) == true) {
+                    Utils.getBox("Đơn hàng không có sản phẩm thanh toán thất bại!!!!!", Alert.AlertType.ERROR).show();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(FXMLThanhToanController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             Utils.getBox("Thanh toán thành công", Alert.AlertType.INFORMATION).show();
         }
         txtMaKH.setEditable(true);
         btTaoHD.setDisable(false);
         loadForm();
+        tbChiTietHD.getItems().clear();
     }
 }
