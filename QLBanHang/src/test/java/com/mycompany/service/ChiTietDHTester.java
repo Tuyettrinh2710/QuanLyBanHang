@@ -66,23 +66,23 @@ public class ChiTietDHTester {
         });
     }
     
-//    @Test
-//    public void them() {
-//        try {
-//            ChiTietHD c = new ChiTietHD();
-//            c.setMaHD(5);
-//            c.setMaSp(14);
-//            c.setTenSP("Adidas Superstar");
-//            c.setSl(1);
-//            c.setDonGia(new BigDecimal(1800000));
-//            c.setGiamGia(0.f);
-//            c.setThanhTien(new BigDecimal(1800000));
-//            ChiTietHDService cs = new ChiTietHDService(CONN);
-//            Assertions.assertTrue(cs.themChiTietDH(c));
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ChiTietDHTester.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    @Test
+    public void them() {
+        try {
+            ChiTietHD c = new ChiTietHD();
+            c.setMaHD(5);
+            c.setMaSp(14);
+            c.setTenSP("Adidas Superstar");
+            c.setSl(1);
+            c.setDonGia(new BigDecimal(1800000));
+            c.setGiamGia(0.f);
+            c.setThanhTien(new BigDecimal(1800000));
+            ChiTietHDService cs = new ChiTietHDService(CONN);
+            Assertions.assertTrue(cs.themChiTietDH(c));
+        } catch (SQLException ex) {
+            Logger.getLogger(ChiTietDHTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     @Test
     public void themIdHDKhongHopLe() {
@@ -118,15 +118,15 @@ public class ChiTietDHTester {
         }
     }
     
-//    @Test
-//    public void xoa() {
-//        try {
-//            ChiTietHDService c = new ChiTietHDService(CONN);
-//            Assertions.assertTrue(c.xoaChiTietSP(10, 12));
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ChiTietDHTester.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    @Test
+    public void xoa() {
+        try {
+            ChiTietHDService c = new ChiTietHDService(CONN);
+            Assertions.assertTrue(c.xoaChiTietSP(11, 12));
+        } catch (SQLException ex) {
+            Logger.getLogger(ChiTietDHTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     @Test
     public void xoaHDKhongCoSP() {
@@ -162,7 +162,7 @@ public class ChiTietDHTester {
     public void xoaChiTietDonHang() {
         try {
             ChiTietHDService c = new ChiTietHDService(CONN);
-            Assertions.assertTrue(c.xoaChiTietDH(5));
+            Assertions.assertTrue(c.xoaChiTietDH(54));
         } catch (SQLException ex) {
             Logger.getLogger(ChiTietDHTester.class.getName()).log(Level.SEVERE, null, ex);
         }

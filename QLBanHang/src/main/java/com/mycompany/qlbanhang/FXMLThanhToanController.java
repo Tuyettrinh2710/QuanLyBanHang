@@ -316,11 +316,15 @@ public class FXMLThanhToanController implements Initializable {
             if(cs.xoaChiTietDH(Integer.parseInt(txtMaHD.getText())) == true) {
                 if (hs.xoaHD(Integer.parseInt(txtMaHD.getText())) == true) {
                     Utils.getBox("Hủy đơn hàng thành công!!!!!!", Alert.AlertType.INFORMATION).show();
+                    txtMaKH.setEditable(true);
+                    btTaoHD.setDisable(false);
                     loadForm();
                     this.tbChiTietHD.getItems().clear();
                 }
             } else if (hs.xoaHD(Integer.parseInt(txtMaHD.getText())) == true) {
-                Utils.getBox("Hủy đơn hàng thành công!!!!!!", Alert.AlertType.ERROR).show();
+                Utils.getBox("Hủy đơn hàng thành công!!!!!!", Alert.AlertType.INFORMATION).show();
+                txtMaKH.setEditable(true);
+                btTaoHD.setDisable(false);
                 loadForm();
                 this.tbChiTietHD.getItems().clear();
             } else

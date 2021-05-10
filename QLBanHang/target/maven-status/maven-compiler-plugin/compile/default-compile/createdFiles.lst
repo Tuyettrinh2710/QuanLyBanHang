@@ -13,6 +13,7 @@ com\mycompany\service\HoaDonService.class
 com\mycompany\service\SanPhamService.class
 com\mycompany\service\ChiTietHDService.class
 com\mycompany\pojo\ChiTietHD.class
+com\mycompany\qlbanhang\FXMLXemSPController.class
 com\mycompany\qlbanhang\FXMLTrangChuController.class
 com\mycompany\qlbanhang\FXMLTimKiemController.class
 com\mycompany\pojo\SanPham.class
@@ -27,4 +28,5 @@ com\mycompany\service\DonHangService.class
 com\mycompany\qlbanhang\FXMLQLSanPhamController.class
 com\mycompany\pojo\HoaDon.class
 com\mycompany\qlbanhang\PrimaryController.class
+com\mycompany\qlbanhang\FXMLBanHangController.class
 com\mycompany\service\NhanVienService.class

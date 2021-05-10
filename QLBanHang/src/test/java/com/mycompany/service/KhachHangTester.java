@@ -64,20 +64,20 @@ public class KhachHangTester {
         });
     }
     
-//    @Test
-//    public void them() {
-//        try {
-//            KhachHang k = new KhachHang();
-//            k.setMaKH("0983763212");
-//            k.setTenKH("Lê Mỹ Quyên");
-//            k.setDiaChi("371 Nguyễn Kiệm, P.3, Q.Gò Vấp, TP.HCM");
-//            k.setSdt("0983763212");
-//            KhachHangService ks = new KhachHangService(CONN);
-//            Assertions.assertTrue(ks.themKH(k));
-//        } catch (SQLException ex) {
-//            Logger.getLogger(KhachHangTester.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    @Test
+    public void them() {
+        try {
+            KhachHang k = new KhachHang();
+            k.setMaKH("KH09");
+            k.setTenKH("Lê Mỹ Quyên");
+            k.setDiaChi("371 Nguyễn Kiệm, P.3, Q.Gò Vấp, TP.HCM");
+            k.setSdt("0983763212");
+            KhachHangService ks = new KhachHangService(CONN);
+            Assertions.assertTrue(ks.themKH(k));
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     @Test
     public void themTrungIDKH() {
@@ -128,7 +128,7 @@ public class KhachHangTester {
     public void idKHTonTai() {
         try {
             KhachHangService ks = new KhachHangService(CONN);
-            Assertions.assertTrue(ks.kiemTraIdTonTai("0983763212"));
+            Assertions.assertTrue(ks.kiemTraIdTonTai("KH01"));
         } catch (SQLException ex) {
             Logger.getLogger(KhachHangTester.class.getName()).log(Level.SEVERE, null, ex);
         }

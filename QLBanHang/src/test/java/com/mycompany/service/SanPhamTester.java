@@ -93,50 +93,50 @@ public class SanPhamTester {
         });
     }
     
-//   @Test
-//   public void themSanPham() throws IOException {
-//        try {
-//            SanPham s = new SanPham();
-//            s.setTenSP("Adidas Holographic");
-//            s.setSoLuong(50);
-//            s.setDonGiaNhap(new BigDecimal(1000000));
-//            s.setDonGiaBan(new BigDecimal(1800000));
-//            s.setAnh(Files.readAllBytes(new File("D:/Images/adidas/holographic.jpg").toPath()));
-//            s.setLoaiSP_id(2);
-//            SanPhamService sv = new SanPhamService(CONN);
-//            Assertions.assertTrue(sv.themSanPham(s));
-//        } catch (SQLException ex) {
-//            Logger.getLogger(SanPhamTester.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//   }
-//   
-//    @Test
-//   public void capNhatSanPham() throws IOException {
-//        try {
-//            SanPham s = new SanPham();
-//            s.setTenSP("Adidas Holographic");
-//            s.setSoLuong(30);
-//            s.setDonGiaNhap(new BigDecimal(1000000));
-//            s.setDonGiaBan(new BigDecimal(1800000));
-//            s.setAnh(Files.readAllBytes(new File("D:/Images/adidas/holographic.jpg").toPath()));
-//            s.setLoaiSP_id(2);
-//            s.setIdSP(16);
-//            SanPhamService sv = new SanPhamService(CONN);
-//            Assertions.assertTrue(sv.capNhatSanPham(s));
-//        } catch (SQLException ex) {
-//            Logger.getLogger(SanPhamTester.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//   }
+   @Test
+   public void themSanPham() throws IOException {
+        try {
+            SanPham s = new SanPham();
+            s.setTenSP("Adidas Holographic");
+            s.setSoLuong(50);
+            s.setDonGiaNhap(new BigDecimal(1000000));
+            s.setDonGiaBan(new BigDecimal(1800000));
+            s.setAnh(Files.readAllBytes(new File("D:/Images/adidas/holographic.jpg").toPath()));
+            s.setLoaiSP_id(2);
+            SanPhamService sv = new SanPhamService(CONN);
+            Assertions.assertTrue(sv.themSanPham(s));
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
+   
+    @Test
+   public void capNhatSanPham() throws IOException {
+        try {
+            SanPham s = new SanPham();
+            s.setTenSP("Adidas Holographic");
+            s.setSoLuong(30);
+            s.setDonGiaNhap(new BigDecimal(1000000));
+            s.setDonGiaBan(new BigDecimal(1800000));
+            s.setAnh(Files.readAllBytes(new File("D:/Images/adidas/holographic.jpg").toPath()));
+            s.setLoaiSP_id(2);
+            s.setIdSP(16);
+            SanPhamService sv = new SanPhamService(CONN);
+            Assertions.assertTrue(sv.capNhatSanPham(s));
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
     
-//   @Test
-//   public void xoaSanPham() {
-//        try {
-//            SanPhamService sv = new SanPhamService(CONN);
-//            Assertions.assertTrue(sv.xoaSanPham(5));
-//        } catch (SQLException ex) {
-//            Logger.getLogger(SanPhamTester.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//   }
+   @Test
+   public void xoaSanPham() {
+        try {
+            SanPhamService sv = new SanPhamService(CONN);
+            Assertions.assertTrue(sv.xoaSanPham(30));
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamTester.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
     
     @Test
     public void idTonTai() {
